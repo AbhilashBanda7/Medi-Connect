@@ -20,7 +20,7 @@ import ChatSystem from './components/chat/ChatSystem';
 
 // Create API URL context
 export const ApiUrlContext = createContext();
-const API_URL = "http://localhost:4000";
+const API_URL = "https://mediconnectbackend-n5va.onrender.com";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
