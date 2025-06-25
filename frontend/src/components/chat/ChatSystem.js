@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import './ChatSystem.css';
 
-const socket = io('http://localhost:4000');
+const socket = io('https://mediconnectbackend-n5va.onrender.com');
 
 const ChatSystem = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +78,7 @@ const ChatSystem = () => {
 	const fetchChats = async () => {
 		setLoading(true);
 		try {
-			const response = await axios.get(`http://localhost:4000/chat-api/chats/user/${userId}?userType=patient`);
+			const response = await axios.get(`https://mediconnectbackend-n5va.onrender.com/chat-api/chats/user/${userId}?userType=patient`);
 			const fetchedChats = (response.data.chats || []).sort((a, b) => new Date(b.lastMessageTimestamp) - new Date(a.lastMessageTimestamp));
 			setChats(fetchedChats);
 			// Automatically select the first chat if none is selected
@@ -95,7 +95,7 @@ const ChatSystem = () => {
 	const fetchMessages = async (chatId) => {
 		setLoading(true);
 		try {
-			const response = await axios.get(`http://localhost:4000/chat-api/chats/${chatId}/messages`);
+			const response = await axios.get(`https://mediconnectbackend-n5va.onrender.com/chat-api/chats/${chatId}/messages`);
 			setMessages(response.data.messages || []);
 			await axios.put(`http://localhost:4000/chat-api/chats/${chatId}/read`, { userId });
 		} catch (err) {
@@ -107,7 +107,7 @@ const ChatSystem = () => {
 
 	const fetchFAQs = async () => {
 		try {
-			const response = await axios.get(`http://localhost:4000/chat-api/faq?audience=patient`);
+			const response = await axios.get(`https://mediconnectbackend-n5va.onrender.com/chat-api/faq?audience=patient`);
 			if (response.data.faqs) {
 				setFaqs(response.data.faqs);
 			}
@@ -130,7 +130,7 @@ const ChatSystem = () => {
 		
 		setNewMessage(''); 
 		try {
-			await axios.post(`http://localhost:4000/chat-api/chats/${selectedChatId}/message`, messageData);
+			await axios.post(`https://mediconnectbackend-n5va.onrender.com/chat-api/chats/${selectedChatId}/message`, messageData);
 		} catch (error) {
 			setError("Failed to send message");
 			setNewMessage(messageData.message);
@@ -153,7 +153,7 @@ const ChatSystem = () => {
 		formData.append('chatId', selectedChatId);
 		
 		try {
-			await axios.post(`http://localhost:4000/chat-api/upload-and-send`, formData);
+			await axios.post(`https://mediconnectbackend-n5va.onrender.com/chat-api/upload-and-send`, formData);
 		} catch (err) {
 			setError("File upload failed.");
 		} finally {
