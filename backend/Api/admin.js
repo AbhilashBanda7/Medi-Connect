@@ -70,8 +70,8 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false, // Use `true` for port 465, `false` for all other ports
     auth: {
-      user: "abhilashbanda7@gmail.com",
-      pass: "dbsw azmz uzhk vdzw",
+      user: process.env.Mail,
+      pass: process.env.Mail_pass
       // pass:"bgzf idcs uoge wnru"
     },
   });
@@ -132,7 +132,7 @@ const transporter = nodemailer.createTransport({
   // -- END: Auto-create chat with new doctor --
 
   const mailoptions = {
-    from: "MediConnect abhilashbanda7@gmail.com",
+    from: `MediConnect process.env.Mail`,
     to: doctor.email,
     subject: `Registration Confirmation and Account Details`,
     text: `Dear Dr. ${doctor.FirstName} ${doctor.LastName},
@@ -173,7 +173,7 @@ Team MEDICONNECT`
 
   let mod = await doctorCollecObj.deleteOne({email:doctor.email})
   const mailoptions = {
-    from: "MediConnect abhilashbanda7@gmail.com",
+    from: `MediConnect process.env.Mail`,
     to: doctor.email,
     subject: `Request Rejection Notice - Incorrect Files Submitted`,
     text: `Dear Dr. ${doctor.FirstName} ${doctor.LastName},
