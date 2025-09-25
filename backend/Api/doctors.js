@@ -146,7 +146,7 @@ doctorApp.post("/remove/:id", expressAsyncHandler(async (req, res) => {
     
     // Send email to doctor
     const mailOptions = {
-      from: "MediConnect abhilashbanda7@gmail.com",
+      from: `MediConnect process.env.Mail`,
       to: doctor.email,
       subject: "MediConnect - Your Account Has Been Removed",
       text: `Dear Dr. ${doctor.FirstName} ${doctor.LastName},
@@ -245,7 +245,7 @@ doctorApp.post("/restore/:id", expressAsyncHandler(async (req, res) => {
       
       // Send email to doctor
       const mailOptions = {
-        from: "MediConnect abhilashbanda7@gmail.com",
+        from: `MediConnect process.env.Mail`,
         to: deletedDoctor.email,
         subject: "MediConnect - Your Account Has Been Restored",
         text: `Dear Dr. ${deletedDoctor.FirstName} ${deletedDoctor.LastName},
@@ -289,7 +289,7 @@ async function notifyAdmins(subject, message) {
     }
     
     const mailOptions = {
-      from: "MediConnect abhilashbanda7@gmail.com",
+      from: `MediConnect process.env.Mail`,
       to: adminEmails.join(", "),
       subject: subject,
       text: message
