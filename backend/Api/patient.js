@@ -125,8 +125,8 @@ const transporter1 = nodemailer.createTransport({
   port: 587,
   secure: false, // Use `true` for port 465, `false` for all other ports
   auth: {
-    user: "abhilashbanda7@gmail.com",
-    pass: "dbsw azmz uzhk vdzw",
+    user: process.env.Mail,
+    pass: process.env.Mail_pass,
   },
 });
 
@@ -171,7 +171,7 @@ patientApp.post(
     console.log(appointment.email);
     
     const mailoptions = {
-        from: "MediConnect abhilashbanda7@gmail.com",
+        from: `MediConnect process.env.Mail`,
         to: appointment.email,
         subject: `Confirm your appointment Reminder: Upcoming appointment with Dr. ${appointment.doctor}`,
         text: `Dear ${appointment.FirstName} ${appointment.LastName},
@@ -189,7 +189,7 @@ patientApp.post(
     // Only send email to doctor if we found their email
     if (dbDocData && dbDocData.email) {
     const mailoptions2 = {
-        from: "MediConnect abhilashbanda7@gmail.com",
+        from: `MediConnect process.env.Mail`,
         to: dbDocData.email,
         subject: ` New Appointment Booking -${appointment.FirstName} ${appointment.LastName} on ${appointment.dateOfAppointment}`,
         text: `Dear Dr. ${appointment.doctor},
