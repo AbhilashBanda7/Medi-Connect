@@ -136,8 +136,8 @@ const transporter2 = nodemailer.createTransport({
   port: 587,
   secure: false, // Use `true` for port 465, `false` for all other ports
   auth: {
-    user: "abhilashbanda7@gmail.com",
-    pass: "dbsw azmz uzhk vdzw",
+    user: process.env.Mail,
+    pass: process.env.Mail_pass,
   }
 },
 // {from: 'Mediconnect'}
